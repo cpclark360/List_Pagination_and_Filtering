@@ -22,11 +22,6 @@ const studentList = unorderedList.children;
 const pageLinks = document.getElementsByClassName('page')[0];
 
 
-
-
-
-
-
 /*** 
    Create the `showPage` function to hide all of the items in the 
    list except for the ten you want to show.
@@ -65,39 +60,34 @@ const appendPageLinks = () => {
 	const pageAmount = Math.ceil( studentNum / 10 );
 	const paginationLocationAfter = document.getElementsByClassName('student-list');
 	
+
 	const newDiv = document.createElement("div");
 	newDiv.className = 'pagination';
 	newDiv.textContent = '';
 	pageLinks.appendChild(newDiv);
 	const newUL = document.createElement('ul');
+	const activeSelection = document.getElementsByClassName('.pagination').firstChild;
 	newDiv.appendChild(newUL);
-
+	const newLi = document.createElement('li');
+	const newAnchor = document.createElement('a');
 
 	for(let i = 0; i < pageAmount; i += 1){
-
 		
-		console.log(i);
   		const newLi = document.createElement('li');
-		newUL.appendChild(newLi);
 		const newAnchor = document.createElement('a');
-		newAnchor.href ='#';
+		newUL.appendChild(newLi);
+		newAnchor.className = '';
+		newAnchor.href = '#';
 		newAnchor.textContent = i+1;
 		newLi.appendChild(newAnchor);
-
 		newAnchor.addEventListener("click", () => {
 			showPage(studentList, i);
-			
-		});
 
-		
-
+ 		});
 	}
-
-
-
-
-
 }
+
+const aList = document.getElementsByTagName('a');
 
 
 showPage(studentList,0);
