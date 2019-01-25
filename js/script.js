@@ -74,17 +74,23 @@ const appendPageLinks = () => {
 
 
 	for(let i = 0; i < pageAmount; i += 1){
+
 		
 		console.log(i);
-
-		newLi = document.createElement('li');
+  		const newLi = document.createElement('li');
 		newUL.appendChild(newLi);
-
-		newAnchor = document.createElement('a');
-		
+		const newAnchor = document.createElement('a');
 		newAnchor.href ='#';
 		newAnchor.textContent = i+1;
 		newLi.appendChild(newAnchor);
+
+		newAnchor.addEventListener("click", () => {
+			showPage(studentList, i);
+			
+		});
+
+		
+
 	}
 
 
@@ -92,5 +98,11 @@ const appendPageLinks = () => {
 
 
 }
+
+
+showPage(studentList,0);
+appendPageLinks();
+
+
 
 // Remember to delete the comments that came with this file, and replace them with your own code comments.
