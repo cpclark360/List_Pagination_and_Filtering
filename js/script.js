@@ -13,7 +13,7 @@ const studentList = unorderedList.children;
 const pageLinks = document.getElementsByClassName('page')[0];
 
 
-//  'showPage' function 
+//  'showPage' function displays 10 items per page until its fewer than 10 and hides the remaining list items.
 
 const showPage = (list, pageNumber) => {
 
@@ -27,41 +27,43 @@ const showPage = (list, pageNumber) => {
 }
 
 
-//
+// 'appendPageLinks' function dynamically creates and loads the HTML
+//  eventListener on anchor tags 0-5  listens for the anchor clicked and changes the 'className' value to 'active' */
 
 const appendPageLinks = () => {
 	const studentNum = studentList.length;
 	const pageAmount = Math.ceil( studentNum / 10 );
-	const paginationLocationAfter = document.getElementsByClassName('student-list');
 	
-
 	const newDiv = document.createElement("div");
 	newDiv.className = 'pagination';
 	newDiv.textContent = '';
 	pageLinks.appendChild(newDiv);
+	
 	const newUL = document.createElement('ul');
 	const activeSelection = document.getElementsByClassName('.pagination').firstChild;
 	newDiv.appendChild(newUL);
-	const newLi = document.createElement('li');
-	const newAnchor = document.createElement('a');
+	
 
-	for(let i = 0; i < pageAmount + 1; i += 1){
-		
+	// pageAmount + 1 is to end event target on the 7th anchor
+
+	for(let i = 0; i < pageAmount + 1; i += 1){ 
   		const newLi = document.createElement('li');
 		const newAnchor = document.createElement('a');
 		newUL.appendChild(newLi);
+		
 		newAnchor.className = '';
 		newAnchor.href = '#';
-		newAnchor.textContent = i+1;
+		newAnchor.textContent = i+1; // to change anchor text from 0-5 to 1-7
 		newLi.appendChild(newAnchor);
 		
-		// Cant figure out why the 6th button className isnt being changed after its been clicked.
+		
+
 		newAnchor.addEventListener("click", (e) => {
 			const aList = document.getElementsByTagName('a');
 			for( let i = 0; i < aList.length ; i += 1){
 				if ( aList[i].className === '' ){
 					e.target.className = 'active';
-					console.log(i);
+					
 				} else {
 					aList[i].className = '';
 				}
@@ -70,24 +72,18 @@ const appendPageLinks = () => {
 			
  		});
 	}
+
+	// starts with first anchor  'className' value as 'active'
+	// Hides the last child anchor tag
+
+	const aList = document.getElementsByTagName('a');
+	aList[0].className = 'active';
+	newUL.lastChild.style.display = 'none';
 }
 
-
-
-
-
-
+// 'showPage' starts on the first page
 
 showPage(studentList,0);
 appendPageLinks();
 
-const aList = document.getElementsByTagName('a');
-aList[0].className = 'active'
-aList[6].style.display = 'none';
-
-
-
-
-
-// Remember to delete the comments that came with this file, and replace them with your own code comments
 
