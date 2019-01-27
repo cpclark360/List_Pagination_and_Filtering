@@ -6,13 +6,14 @@ Cedric Clark
    
 
 
+// Defined Global varibles
 
 const unorderedList = document.getElementsByClassName('student-list')[0];
 const studentList = unorderedList.children;
 const pageLinks = document.getElementsByClassName('page')[0];
 
 
-// 
+//  'showPage' function 
 
 const showPage = (list, pageNumber) => {
 
@@ -44,7 +45,7 @@ const appendPageLinks = () => {
 	const newLi = document.createElement('li');
 	const newAnchor = document.createElement('a');
 
-	for(let i = 0; i < pageAmount; i += 1){
+	for(let i = 0; i < pageAmount + 1; i += 1){
 		
   		const newLi = document.createElement('li');
 		const newAnchor = document.createElement('a');
@@ -66,6 +67,7 @@ const appendPageLinks = () => {
 				}
 			}
 			showPage(studentList, i);
+			
  		});
 	}
 }
@@ -80,10 +82,12 @@ showPage(studentList,0);
 appendPageLinks();
 
 const aList = document.getElementsByTagName('a');
-
+aList[0].className = 'active'
+aList[6].style.display = 'none';
 
 
 
 
 
 // Remember to delete the comments that came with this file, and replace them with your own code comments
+
